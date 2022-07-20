@@ -1,13 +1,11 @@
-package list
+package collections
 
-import "github.com/abdivasiyev/go-collections/collections"
-
-type ArrayListIterator[T collections.Object] struct {
+type ArrayListIterator[T Object] struct {
 	list         List[T]
 	currentIndex int
 }
 
-func NewArrayListIterator[T collections.Object](arrayList ArrayList[T]) *ArrayListIterator[T] {
+func NewArrayListIterator[T Object](arrayList ArrayList[T]) *ArrayListIterator[T] {
 	return &ArrayListIterator[T]{
 		list:         &arrayList,
 		currentIndex: 0,
@@ -20,7 +18,7 @@ func (itr *ArrayListIterator[T]) HasNext() bool {
 
 func (itr *ArrayListIterator[T]) Next() T {
 	if itr.currentIndex >= itr.list.Size() || itr.currentIndex < 0 {
-		panic(collections.ErrIndexOutOfBounds)
+		panic(ErrIndexOutOfBounds)
 	}
 
 	item, err := itr.list.Get(itr.currentIndex)

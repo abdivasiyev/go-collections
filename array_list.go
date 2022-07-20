@@ -1,14 +1,10 @@
-package list
+package collections
 
-import (
-	"github.com/abdivasiyev/go-collections/collections"
-)
-
-type ArrayList[T collections.Object] struct {
+type ArrayList[T Object] struct {
 	items []T
 }
 
-func NewArrayList[T collections.Object]() *ArrayList[T] {
+func NewArrayList[T Object]() *ArrayList[T] {
 	return &ArrayList[T]{
 		items: make([]T, 0),
 	}
@@ -22,7 +18,7 @@ func (a *ArrayList[T]) Size() int {
 	return len(a.items)
 }
 
-func (a *ArrayList[T]) Iterator() collections.Iterator[T] {
+func (a *ArrayList[T]) Iterator() Iterator[T] {
 	return NewArrayListIterator[T](*a)
 }
 
@@ -60,7 +56,7 @@ func (a *ArrayList[T]) Clear() {
 	a.items = nil
 }
 
-func (a *ArrayList[T]) AddAll(c collections.Collection[T]) {
+func (a *ArrayList[T]) AddAll(c Collection[T]) {
 	itr := c.Iterator()
 
 	for itr.HasNext() {
@@ -68,7 +64,7 @@ func (a *ArrayList[T]) AddAll(c collections.Collection[T]) {
 	}
 }
 
-func (a *ArrayList[T]) RemoveAll(c collections.Collection[T]) {
+func (a *ArrayList[T]) RemoveAll(c Collection[T]) {
 	itr := c.Iterator()
 
 	for itr.HasNext() {
@@ -79,7 +75,7 @@ func (a *ArrayList[T]) RemoveAll(c collections.Collection[T]) {
 func (a *ArrayList[T]) Get(index int) (T, error) {
 	var result T
 	if index < 0 || index >= len(a.items) {
-		return result, collections.ErrIndexOutOfBounds
+		return result, ErrIndexOutOfBounds
 	}
 
 	return a.items[index], nil
@@ -87,7 +83,7 @@ func (a *ArrayList[T]) Get(index int) (T, error) {
 
 func (a *ArrayList[T]) Set(index int, item T) error {
 	if index < 0 || index >= len(a.items) {
-		return collections.ErrIndexOutOfBounds
+		return ErrIndexOutOfBounds
 	}
 
 	a.items[index] = item
@@ -97,7 +93,7 @@ func (a *ArrayList[T]) Set(index int, item T) error {
 
 func (a *ArrayList[T]) Delete(index int) error {
 	if index < 0 || index >= len(a.items) {
-		return collections.ErrIndexOutOfBounds
+		return ErrIndexOutOfBounds
 	}
 
 	a.items = append(a.items[:index], a.items[index+1:]...)
