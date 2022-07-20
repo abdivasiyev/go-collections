@@ -10,6 +10,12 @@ func NewArrayList[T Object]() *ArrayList[T] {
 	}
 }
 
+func (a *ArrayList[T]) FromArray(items []T) {
+	for _, item := range items {
+		a.Add(item)
+	}
+}
+
 func (a *ArrayList[T]) IsEmpty() bool {
 	return len(a.items) == 0
 }

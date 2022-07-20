@@ -17,6 +17,7 @@ type Collection[T Object] interface {
 	Size() int
 	Iterator() Iterator[T]
 	ToArray() []T
+	FromArray(items []T)
 	Add(item T)
 	Remove(item T)
 	Contains(item T) bool
