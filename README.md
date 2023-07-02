@@ -1,5 +1,7 @@
 # Collections in Go
 
+[![codecov](https://codecov.io/gh/abdivasiyev/go-collections/branch/master/graph/badge.svg?token=tNKcOjlxLo)](https://codecov.io/gh/abdivasiyev/go-collections)
+
 *Hey, now Java collections are here!*
 
 @author Asliddin Abdivasiyev
