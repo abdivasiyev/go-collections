@@ -1,3 +1,3 @@
 module github.com/abdivasiyev/go-collections
 
-go 1.18
+go 1.20
