@@ -2,6 +2,7 @@
 
 [![codecov](https://codecov.io/gh/abdivasiyev/go-collections/branch/master/graph/badge.svg?token=tNKcOjlxLo)](https://codecov.io/gh/abdivasiyev/go-collections)
 [![Tests](https://github.com/abdivasiyev/go-collections/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/abdivasiyev/go-collections/actions/workflows/ci.yml)
+[![CodeQL Security](https://github.com/abdivasiyev/go-collections/actions/workflows/codeql-analysis.yml/badge.svg?branch=master)](https://github.com/abdivasiyev/go-collections/actions/workflows/codeql-analysis.yml)
 
 *Hey, now Java collections are here!*
 
