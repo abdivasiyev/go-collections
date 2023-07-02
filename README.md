@@ -46,7 +46,7 @@ Available collections:
 
 - [ ] List
   - [x] ArrayList
-  - [ ] LinkedList
+  - [x] LinkedList
 - [ ] Queue
   - [ ] Queue
   - [ ] PriorityQueue
