@@ -1,9 +1,9 @@
-package collections
+package linked_list
 
 import "testing"
 
 func TestLinkedList_Contains(t *testing.T) {
-	l := NewLinkedList[int]()
+	l := New[int]()
 	l.Add(1)
 	l.Add(2)
 
@@ -19,7 +19,7 @@ func TestLinkedList_Contains(t *testing.T) {
 }
 
 func TestLinkedList_Clear(t *testing.T) {
-	l := NewLinkedList[int]()
+	l := New[int]()
 	l.Add(1)
 	l.Add(2)
 
@@ -32,11 +32,11 @@ func TestLinkedList_Clear(t *testing.T) {
 }
 
 func TestLinkedList_AddAll(t *testing.T) {
-	l := NewLinkedList[int]()
+	l := New[int]()
 	l.Add(1)
 	l.Add(2)
 
-	l2 := NewLinkedList[int]()
+	l2 := New[int]()
 
 	l2.AddAll(l)
 
@@ -49,7 +49,7 @@ func TestLinkedList_AddAll(t *testing.T) {
 }
 
 func TestLinkedList_Add(t *testing.T) {
-	l := NewLinkedList[int]()
+	l := New[int]()
 	l.Add(1)
 	l.Add(2)
 
@@ -60,7 +60,7 @@ func TestLinkedList_Add(t *testing.T) {
 }
 
 func TestLinkedList_IsEmpty(t *testing.T) {
-	l := NewLinkedList[int]()
+	l := New[int]()
 
 	if l.IsEmpty() != true {
 		t.Errorf("list is not empty; list size: %v", l.Size())
@@ -69,7 +69,7 @@ func TestLinkedList_IsEmpty(t *testing.T) {
 }
 
 func TestLinkedList_Size(t *testing.T) {
-	l := NewLinkedList[int]()
+	l := New[int]()
 
 	l.Add(1)
 	l.Add(2)

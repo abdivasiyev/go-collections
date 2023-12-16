@@ -1,13 +1,13 @@
-package collections
+package linked_list
 
 import "testing"
 
 func TestLinkedListIterator_Next(t *testing.T) {
-	l := NewLinkedList[int]()
+	l := New[int]()
 	l.Add(1)
 	l.Add(2)
 
-	itr := NewLinkedListIterator[int](*l)
+	itr := newLinkedListIterator[int](*l)
 
 	if itr.Next() != 1 {
 		t.Errorf("iterator next element must be 1")
@@ -21,11 +21,11 @@ func TestLinkedListIterator_Next(t *testing.T) {
 }
 
 func TestLinkedListIterator_HasNext(t *testing.T) {
-	l := NewLinkedList[int]()
+	l := New[int]()
 	l.Add(1)
 	l.Add(2)
 
-	itr := NewLinkedListIterator[int](*l)
+	itr := newLinkedListIterator[int](*l)
 
 	if itr.HasNext() != true {
 		t.Errorf("iterator must have next element")

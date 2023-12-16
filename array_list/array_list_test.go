@@ -1,9 +1,9 @@
-package collections
+package array_list
 
 import "testing"
 
 func TestArrayList_Contains(t *testing.T) {
-	l := NewArrayList[int]()
+	l := New[int]()
 	l.Add(1)
 	l.Add(2)
 
@@ -19,7 +19,7 @@ func TestArrayList_Contains(t *testing.T) {
 }
 
 func TestArrayList_Clear(t *testing.T) {
-	l := NewArrayList[int]()
+	l := New[int]()
 	l.Add(1)
 	l.Add(2)
 
@@ -32,11 +32,11 @@ func TestArrayList_Clear(t *testing.T) {
 }
 
 func TestArrayList_AddAll(t *testing.T) {
-	l := NewArrayList[int]()
+	l := New[int]()
 	l.Add(1)
 	l.Add(2)
 
-	l2 := NewArrayList[int]()
+	l2 := New[int]()
 
 	l2.AddAll(l)
 
@@ -49,7 +49,7 @@ func TestArrayList_AddAll(t *testing.T) {
 }
 
 func TestArrayList_Add(t *testing.T) {
-	l := NewArrayList[int]()
+	l := New[int]()
 	l.Add(1)
 	l.Add(2)
 
@@ -60,7 +60,7 @@ func TestArrayList_Add(t *testing.T) {
 }
 
 func TestArrayList_IsEmpty(t *testing.T) {
-	l := NewArrayList[int]()
+	l := New[int]()
 
 	if l.IsEmpty() != true {
 		t.Errorf("list is not empty; list size: %v", l.Size())
@@ -69,7 +69,7 @@ func TestArrayList_IsEmpty(t *testing.T) {
 }
 
 func TestArrayList_Size(t *testing.T) {
-	l := NewArrayList[int]()
+	l := New[int]()
 
 	l.Add(1)
 	l.Add(2)
