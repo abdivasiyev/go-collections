@@ -48,7 +48,7 @@ func main() {
 
 Available collections:
 
-- [ ] List
+- [x] List
   - [x] ArrayList
   - [x] LinkedList
 - [ ] Queue

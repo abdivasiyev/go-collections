@@ -10,6 +10,16 @@ func NewArrayList[T Object]() *ArrayList[T] {
 	}
 }
 
+func (a *ArrayList[T]) WithSize(size int) *ArrayList[T] {
+	a.items = make([]T, size)
+	return a
+}
+
+func (a *ArrayList[T]) WithCapacity(capacity int) *ArrayList[T] {
+	a.items = make([]T, 0, capacity)
+	return a
+}
+
 func (a *ArrayList[T]) FromArray(items []T) {
 	for _, item := range items {
 		a.Add(item)
