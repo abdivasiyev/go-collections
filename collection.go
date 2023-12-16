@@ -15,14 +15,14 @@ type Object interface {
 
 // Collection base interface for all data structures
 type Collection[T Object] interface {
-	IsEmpty() bool             // returns true if collection is empty
-	Size() int                 // returns current size of collection
-	ToArray() []T              // converts collection to slice
-	FromArray(items []T)       // converts slice of items to specific collection
-	Add(item T)                // adds new item to collection
-	Remove(item T)             // removes given item from collection
-	Contains(item T) bool      // checks given item exists in collection
-	Clear()                    // clears collection
-	AddAll(c Collection[T])    // adds given collection items to current collection
-	RemoveAll(c Collection[T]) // removes given collection items from current collection
+	IsEmpty() bool           // returns true if collection is empty
+	Size() int               // returns current size of collection
+	ToArray() []T            // converts collection to slice
+	FromArray(items []T)     // converts slice of items to specific collection
+	Add(item T)              // adds new item to collection
+	Remove(item T)           // removes given item from collection
+	Contains(item T) bool    // checks given item exists in collection
+	Clear()                  // clears collection
+	AddAll(c Iterable[T])    // adds given collection items to current collection
+	RemoveAll(c Iterable[T]) // removes given collection items from current collection
 }
