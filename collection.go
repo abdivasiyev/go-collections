@@ -17,7 +17,6 @@ type Object interface {
 type Collection[T Object] interface {
 	IsEmpty() bool             // returns true if collection is empty
 	Size() int                 // returns current size of collection
-	Iterator() Iterator[T]     // returns collection specific iterator
 	ToArray() []T              // converts collection to slice
 	FromArray(items []T)       // converts slice of items to specific collection
 	Add(item T)                // adds new item to collection

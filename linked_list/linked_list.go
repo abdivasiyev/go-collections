@@ -85,7 +85,7 @@ func (a *LinkedList[T]) Clear() {
 	a.tail = nil
 }
 
-func (a *LinkedList[T]) AddAll(c collections.Collection[T]) {
+func (a *LinkedList[T]) AddAll(c collections.Iterable[T]) {
 	itr := c.Iterator()
 
 	for itr.HasNext() {
@@ -93,7 +93,7 @@ func (a *LinkedList[T]) AddAll(c collections.Collection[T]) {
 	}
 }
 
-func (a *LinkedList[T]) RemoveAll(c collections.Collection[T]) {
+func (a *LinkedList[T]) RemoveAll(c collections.Iterable[T]) {
 	itr := c.Iterator()
 
 	for itr.HasNext() {

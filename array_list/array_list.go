@@ -74,7 +74,7 @@ func (a *ArrayList[T]) Clear() {
 	a.items = nil
 }
 
-func (a *ArrayList[T]) AddAll(c collections.Collection[T]) {
+func (a *ArrayList[T]) AddAll(c collections.Iterable[T]) {
 	itr := c.Iterator()
 
 	for itr.HasNext() {
@@ -82,7 +82,7 @@ func (a *ArrayList[T]) AddAll(c collections.Collection[T]) {
 	}
 }
 
-func (a *ArrayList[T]) RemoveAll(c collections.Collection[T]) {
+func (a *ArrayList[T]) RemoveAll(c collections.Iterable[T]) {
 	itr := c.Iterator()
 
 	for itr.HasNext() {
