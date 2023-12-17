@@ -80,3 +80,46 @@ func TestArrayList_Size(t *testing.T) {
 		t.FailNow()
 	}
 }
+
+func TestArrayList_Enumerate(t *testing.T) {
+	l := New[int]()
+
+	for k := 0; k < 10; k++ {
+		l.Add(k)
+	}
+
+	l = l.ForEach().Enumerate(func(i int, item int) int {
+		return item
+	}).Collect()
+
+	t.Logf("result: %v", l)
+}
+
+func TestArrayList_Reduce(t *testing.T) {
+	l := New[int]()
+
+	for k := 0; k < 10; k++ {
+		l.Add(k)
+	}
+
+	sum := l.ForEach().Reduce(func(prev int, item int) int {
+		return prev + item
+	})
+
+	if sum != 45 {
+		t.Fatalf("invalid sum: %v, expected: %v", sum, 45)
+	}
+
+	l2 := New[string]()
+
+	l2.Add("Hello,")
+	l2.Add("World!")
+
+	s := l2.ForEach().Reduce(func(prev string, item string) string {
+		return prev + " " + item
+	})
+
+	if s != " Hello, World!" {
+		t.Fatalf("invalid join: %v, expected: %v", s, " Hello, World!")
+	}
+}

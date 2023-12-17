@@ -1,15 +1,141 @@
 package array_list
 
-import "github.com/abdivasiyev/go-collections"
+import (
+	"github.com/abdivasiyev/go-collections"
+)
 
-type ArrayList[T collections.Object] struct {
-	items []T
+type (
+	ArrayList[T collections.Object] struct {
+		items []T
+	}
+
+	iterator[T collections.Object] interface {
+		Reduce(reducer func(prev T, item T) T) T
+		Skip(n int) iterator[T]
+		SkipWhile(predicate func(item T) bool) iterator[T]
+		Enumerate(enumerator func(index int, item T) T) iterator[T]
+		Filter(predicate func(item T) bool) iterator[T]
+		Map(mapper func(item T) T) iterator[T]
+		Collect() *ArrayList[T]
+	}
+
+	intoIter[T collections.Object] struct {
+		list *ArrayList[T]
+	}
+)
+
+func (iter *intoIter[T]) Reduce(reducer func(prev T, item T) T) T {
+	var (
+		it       = iter.list.Iterator()
+		prevItem T
+	)
+
+	for it.HasNext() {
+		curr := it.Next()
+		prevItem = reducer(prevItem, curr)
+	}
+
+	return prevItem
+}
+
+func (iter *intoIter[T]) Skip(n int) iterator[T] {
+	var (
+		list = New[T]()
+		it   = iter.list.Iterator()
+		i    = 0
+	)
+
+	for it.HasNext() {
+		if i+1 < n {
+			it.Next()
+			continue
+		}
+		list.Add(it.Next())
+		i++
+	}
+
+	iter.list = list
+	return iter
+}
+
+func (iter *intoIter[T]) SkipWhile(predicate func(item T) bool) iterator[T] {
+	var (
+		list = New[T]()
+		it   = iter.list.Iterator()
+	)
+
+	for it.HasNext() {
+		item := it.Next()
+
+		if predicate(item) {
+			it.Next()
+			continue
+		}
+		list.Add(it.Next())
+	}
+
+	iter.list = list
+	return iter
+}
+
+func (iter *intoIter[T]) Enumerate(f func(index int, item T) T) iterator[T] {
+	var (
+		list = New[T]()
+		it   = iter.list.Iterator()
+		i    = 0
+	)
+
+	for it.HasNext() {
+		enumerated := f(i, it.Next())
+		list.Add(enumerated)
+		i++
+	}
+
+	iter.list = list
+	return iter
+}
+
+func (iter *intoIter[T]) Filter(f func(item T) bool) iterator[T] {
+	list := New[T]()
+	it := iter.list.Iterator()
+
+	for it.HasNext() {
+		val := it.Next()
+
+		if f(val) {
+			list.Add(val)
+		}
+	}
+
+	iter.list = list
+	return iter
+}
+
+func (iter *intoIter[T]) Map(f func(item T) T) iterator[T] {
+	list := New[T]()
+	it := iter.list.Iterator()
+
+	for it.HasNext() {
+		val := it.Next()
+		list.Add(f(val))
+	}
+
+	iter.list = list
+	return iter
+}
+
+func (iter *intoIter[T]) Collect() *ArrayList[T] {
+	return iter.list
 }
 
 func New[T collections.Object]() *ArrayList[T] {
 	return &ArrayList[T]{
 		items: make([]T, 0),
 	}
+}
+
+func (a *ArrayList[T]) ForEach() iterator[T] {
+	return &intoIter[T]{list: a}
 }
 
 func (a *ArrayList[T]) WithSize(size int) *ArrayList[T] {
