@@ -1,17 +1,19 @@
-package collections
+package linked_list
 
-type nodeValue[T Object] struct {
+import "github.com/abdivasiyev/go-collections"
+
+type nodeValue[T collections.Object] struct {
 	value T
 	next  *nodeValue[T]
 }
 
-type LinkedList[T Object] struct {
+type LinkedList[T collections.Object] struct {
 	head *nodeValue[T]
 	tail *nodeValue[T]
 	size int
 }
 
-func NewLinkedList[T Object]() *LinkedList[T] {
+func New[T collections.Object]() *LinkedList[T] {
 	return &LinkedList[T]{
 		head: nil,
 		tail: nil,
@@ -33,8 +35,8 @@ func (a *LinkedList[T]) Size() int {
 	return a.size
 }
 
-func (a *LinkedList[T]) Iterator() Iterator[T] {
-	return NewLinkedListIterator[T](*a)
+func (a *LinkedList[T]) Iterator() collections.Iterator[T] {
+	return newLinkedListIterator[T](*a)
 }
 
 func (a *LinkedList[T]) ToArray() []T {
@@ -83,7 +85,7 @@ func (a *LinkedList[T]) Clear() {
 	a.tail = nil
 }
 
-func (a *LinkedList[T]) AddAll(c Collection[T]) {
+func (a *LinkedList[T]) AddAll(c collections.Iterable[T]) {
 	itr := c.Iterator()
 
 	for itr.HasNext() {
@@ -91,7 +93,7 @@ func (a *LinkedList[T]) AddAll(c Collection[T]) {
 	}
 }
 
-func (a *LinkedList[T]) RemoveAll(c Collection[T]) {
+func (a *LinkedList[T]) RemoveAll(c collections.Iterable[T]) {
 	itr := c.Iterator()
 
 	for itr.HasNext() {
@@ -102,7 +104,7 @@ func (a *LinkedList[T]) RemoveAll(c Collection[T]) {
 func (a *LinkedList[T]) Get(index int) (T, error) {
 	var result T
 	if index < 0 || index >= a.size {
-		return result, ErrIndexOutOfBounds
+		return result, collections.ErrIndexOutOfBounds
 	}
 
 	var node *nodeValue[T] = a.head
@@ -114,7 +116,7 @@ func (a *LinkedList[T]) Get(index int) (T, error) {
 
 func (a *LinkedList[T]) Set(index int, item T) error {
 	if index < 0 || index >= a.size {
-		return ErrIndexOutOfBounds
+		return collections.ErrIndexOutOfBounds
 	}
 
 	var node *nodeValue[T] = a.head
@@ -129,7 +131,7 @@ func (a *LinkedList[T]) Set(index int, item T) error {
 
 func (a *LinkedList[T]) Delete(index int) error {
 	if index < 0 || index >= a.size {
-		return ErrIndexOutOfBounds
+		return collections.ErrIndexOutOfBounds
 	}
 
 	var node *nodeValue[T] = a.head

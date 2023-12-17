@@ -1,13 +1,13 @@
-package collections
+package array_list
 
 import "testing"
 
 func TestArrayListIterator_Next(t *testing.T) {
-	l := NewArrayList[int]()
+	l := New[int]()
 	l.Add(1)
 	l.Add(2)
 
-	itr := NewArrayListIterator[int](*l)
+	itr := newArrayListIterator[int](*l)
 
 	if itr.Next() != 1 {
 		t.Errorf("iterator next element must be 1")
@@ -21,11 +21,11 @@ func TestArrayListIterator_Next(t *testing.T) {
 }
 
 func TestArrayListIterator_HasNext(t *testing.T) {
-	l := NewArrayList[int]()
+	l := New[int]()
 	l.Add(1)
 	l.Add(2)
 
-	itr := NewArrayListIterator[int](*l)
+	itr := newArrayListIterator[int](*l)
 
 	if itr.HasNext() != true {
 		t.Errorf("iterator must have next element")
